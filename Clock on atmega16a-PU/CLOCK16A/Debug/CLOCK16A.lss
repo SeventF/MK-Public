@@ -1,0 +1,763 @@
+
+CLOCK16A.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000054a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000016  00800060  0000054a  000005de  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000005  00800076  00800076  000005f4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000005f4  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000624  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000078  00000000  00000000  00000660  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001864  00000000  00000000  000006d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000079a  00000000  00000000  00001f3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000743  00000000  00000000  000026d6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000130  00000000  00000000  00002e1c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000421  00000000  00000000  00002f4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000d9a  00000000  00000000  0000336d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000068  00000000  00000000  00004107  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 e1 00 	jmp	0x1c2	; 0x1c2 <__vector_4>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e4       	ldi	r30, 0x4A	; 74
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a6 37       	cpi	r26, 0x76	; 118
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a6 e7       	ldi	r26, 0x76	; 118
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ab 37       	cpi	r26, 0x7B	; 123
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 db 01 	call	0x3b6	; 0x3b6 <main>
+  8a:	0c 94 a3 02 	jmp	0x546	; 0x546 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <SendHalfByte>:
+}
+//--------------------------------
+void SetPos(unsigned char x,unsigned char y){
+	char adress;
+	adress=(0x40*y+x)|0b10000000;
+	SendByte(adress, 0);
+  92:	91 9a       	sbi	0x12, 1	; 18
+  94:	95 e8       	ldi	r25, 0x85	; 133
+  96:	9a 95       	dec	r25
+  98:	f1 f7       	brne	.-4      	; 0x96 <SendHalfByte+0x4>
+  9a:	00 00       	nop
+  9c:	92 b3       	in	r25, 0x12	; 18
+  9e:	9f 70       	andi	r25, 0x0F	; 15
+  a0:	92 bb       	out	0x12, r25	; 18
+  a2:	92 b3       	in	r25, 0x12	; 18
+  a4:	82 95       	swap	r24
+  a6:	80 7f       	andi	r24, 0xF0	; 240
+  a8:	89 2b       	or	r24, r25
+  aa:	82 bb       	out	0x12, r24	; 18
+  ac:	91 98       	cbi	0x12, 1	; 18
+  ae:	85 e8       	ldi	r24, 0x85	; 133
+  b0:	8a 95       	dec	r24
+  b2:	f1 f7       	brne	.-4      	; 0xb0 <SendHalfByte+0x1e>
+  b4:	00 00       	nop
+  b6:	08 95       	ret
+
+000000b8 <SendByte>:
+  b8:	cf 93       	push	r28
+  ba:	c8 2f       	mov	r28, r24
+  bc:	61 11       	cpse	r22, r1
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <SendByte+0xc>
+  c0:	90 98       	cbi	0x12, 0	; 18
+  c2:	01 c0       	rjmp	.+2      	; 0xc6 <SendByte+0xe>
+  c4:	90 9a       	sbi	0x12, 0	; 18
+  c6:	8c 2f       	mov	r24, r28
+  c8:	82 95       	swap	r24
+  ca:	8f 70       	andi	r24, 0x0F	; 15
+  cc:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+  d0:	8c 2f       	mov	r24, r28
+  d2:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+  d6:	cf 91       	pop	r28
+  d8:	08 95       	ret
+
+000000da <LCD_INI>:
+  da:	2f ef       	ldi	r18, 0xFF	; 255
+  dc:	89 ef       	ldi	r24, 0xF9	; 249
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	21 50       	subi	r18, 0x01	; 1
+  e2:	80 40       	sbci	r24, 0x00	; 0
+  e4:	90 40       	sbci	r25, 0x00	; 0
+  e6:	e1 f7       	brne	.-8      	; 0xe0 <LCD_INI+0x6>
+  e8:	00 c0       	rjmp	.+0      	; 0xea <LCD_INI+0x10>
+  ea:	00 00       	nop
+  ec:	83 e0       	ldi	r24, 0x03	; 3
+  ee:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+  f2:	8f e0       	ldi	r24, 0x0F	; 15
+  f4:	97 e2       	ldi	r25, 0x27	; 39
+  f6:	01 97       	sbiw	r24, 0x01	; 1
+  f8:	f1 f7       	brne	.-4      	; 0xf6 <LCD_INI+0x1c>
+  fa:	00 c0       	rjmp	.+0      	; 0xfc <LCD_INI+0x22>
+  fc:	00 00       	nop
+  fe:	83 e0       	ldi	r24, 0x03	; 3
+ 100:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+ 104:	87 ec       	ldi	r24, 0xC7	; 199
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	01 97       	sbiw	r24, 0x01	; 1
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <LCD_INI+0x2e>
+ 10c:	00 c0       	rjmp	.+0      	; 0x10e <LCD_INI+0x34>
+ 10e:	00 00       	nop
+ 110:	83 e0       	ldi	r24, 0x03	; 3
+ 112:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+ 116:	8f ec       	ldi	r24, 0xCF	; 207
+ 118:	97 e0       	ldi	r25, 0x07	; 7
+ 11a:	01 97       	sbiw	r24, 0x01	; 1
+ 11c:	f1 f7       	brne	.-4      	; 0x11a <LCD_INI+0x40>
+ 11e:	00 c0       	rjmp	.+0      	; 0x120 <LCD_INI+0x46>
+ 120:	00 00       	nop
+ 122:	82 e0       	ldi	r24, 0x02	; 2
+ 124:	0e 94 49 00 	call	0x92	; 0x92 <SendHalfByte>
+ 128:	8f ec       	ldi	r24, 0xCF	; 207
+ 12a:	97 e0       	ldi	r25, 0x07	; 7
+ 12c:	01 97       	sbiw	r24, 0x01	; 1
+ 12e:	f1 f7       	brne	.-4      	; 0x12c <LCD_INI+0x52>
+ 130:	00 c0       	rjmp	.+0      	; 0x132 <LCD_INI+0x58>
+ 132:	00 00       	nop
+ 134:	60 e0       	ldi	r22, 0x00	; 0
+ 136:	88 e2       	ldi	r24, 0x28	; 40
+ 138:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 13c:	8f ec       	ldi	r24, 0xCF	; 207
+ 13e:	97 e0       	ldi	r25, 0x07	; 7
+ 140:	01 97       	sbiw	r24, 0x01	; 1
+ 142:	f1 f7       	brne	.-4      	; 0x140 <LCD_INI+0x66>
+ 144:	00 c0       	rjmp	.+0      	; 0x146 <LCD_INI+0x6c>
+ 146:	00 00       	nop
+ 148:	60 e0       	ldi	r22, 0x00	; 0
+ 14a:	8c e0       	ldi	r24, 0x0C	; 12
+ 14c:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 150:	8f ec       	ldi	r24, 0xCF	; 207
+ 152:	97 e0       	ldi	r25, 0x07	; 7
+ 154:	01 97       	sbiw	r24, 0x01	; 1
+ 156:	f1 f7       	brne	.-4      	; 0x154 <LCD_INI+0x7a>
+ 158:	00 c0       	rjmp	.+0      	; 0x15a <LCD_INI+0x80>
+ 15a:	00 00       	nop
+ 15c:	60 e0       	ldi	r22, 0x00	; 0
+ 15e:	86 e0       	ldi	r24, 0x06	; 6
+ 160:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 164:	8f ec       	ldi	r24, 0xCF	; 207
+ 166:	97 e0       	ldi	r25, 0x07	; 7
+ 168:	01 97       	sbiw	r24, 0x01	; 1
+ 16a:	f1 f7       	brne	.-4      	; 0x168 <LCD_INI+0x8e>
+ 16c:	00 c0       	rjmp	.+0      	; 0x16e <LCD_INI+0x94>
+ 16e:	00 00       	nop
+ 170:	08 95       	ret
+
+00000172 <SendChar>:
+ 172:	61 e0       	ldi	r22, 0x01	; 1
+ 174:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 178:	08 95       	ret
+
+0000017a <SendStr>:
+}
+//---------------------------------
+void SendStr(char str[]){
+ 17a:	cf 93       	push	r28
+ 17c:	df 93       	push	r29
+ 17e:	ec 01       	movw	r28, r24
+	wchar_t n;
+	for(n=0;str[n]!='\0';n++)
+ 180:	88 81       	ld	r24, Y
+ 182:	88 23       	and	r24, r24
+ 184:	31 f0       	breq	.+12     	; 0x192 <SendStr+0x18>
+ 186:	21 96       	adiw	r28, 0x01	; 1
+	SendChar(str[n]);
+ 188:	0e 94 b9 00 	call	0x172	; 0x172 <SendChar>
+	SendByte(adress, 0);
+}
+//---------------------------------
+void SendStr(char str[]){
+	wchar_t n;
+	for(n=0;str[n]!='\0';n++)
+ 18c:	89 91       	ld	r24, Y+
+ 18e:	81 11       	cpse	r24, r1
+ 190:	fb cf       	rjmp	.-10     	; 0x188 <SendStr+0xe>
+	SendChar(str[n]);
+}
+ 192:	df 91       	pop	r29
+ 194:	cf 91       	pop	r28
+ 196:	08 95       	ret
+
+00000198 <SetDdramAddress>:
+//--------------------------------
+void SetDdramAddress(uint8_t address){
+	SendByte(address|0x80,0);
+ 198:	60 e0       	ldi	r22, 0x00	; 0
+ 19a:	80 68       	ori	r24, 0x80	; 128
+ 19c:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 1a0:	08 95       	ret
+
+000001a2 <SetCgramAddress>:
+}
+//--------------------------------
+void SetCgramAddress(uint8_t address){
+	SendByte(address|0x40,0);
+ 1a2:	60 e0       	ldi	r22, 0x00	; 0
+ 1a4:	80 64       	ori	r24, 0x40	; 64
+ 1a6:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 1aa:	08 95       	ret
+
+000001ac <TIMER_INI>:
+
+ }
+ }
+//----------------------------
+void TIMER_INI(){
+	TIMSK &=~(1<<OCIE2)|(1<<TOIE2);//Prohibit interruptions of Timer2
+ 1ac:	89 b7       	in	r24, 0x39	; 57
+ 1ae:	8f 77       	andi	r24, 0x7F	; 127
+ 1b0:	89 bf       	out	0x39, r24	; 57
+	ASSR |=(1<<AS2);// Include an asynchronous mode of external quartz
+ 1b2:	82 b5       	in	r24, 0x22	; 34
+ 1b4:	88 60       	ori	r24, 0x08	; 8
+ 1b6:	82 bd       	out	0x22, r24	; 34
+	TCNT2 = 0x00; //We reset the counter
+ 1b8:	14 bc       	out	0x24, r1	; 36
+	TCCR2 |=(1<<CS20)|(1<<CS22);//Installation of a predivider (32768/128=256tiks per second)
+ 1ba:	85 b5       	in	r24, 0x25	; 37
+ 1bc:	85 60       	ori	r24, 0x05	; 5
+ 1be:	85 bd       	out	0x25, r24	; 37
+ 1c0:	08 95       	ret
+
+000001c2 <__vector_4>:
+}
+//----------------------------
+ISR(TIMER2_OVF_vect){
+ 1c2:	1f 92       	push	r1
+ 1c4:	0f 92       	push	r0
+ 1c6:	0f b6       	in	r0, 0x3f	; 63
+ 1c8:	0f 92       	push	r0
+ 1ca:	11 24       	eor	r1, r1
+ 1cc:	2f 93       	push	r18
+ 1ce:	3f 93       	push	r19
+ 1d0:	4f 93       	push	r20
+ 1d2:	5f 93       	push	r21
+ 1d4:	6f 93       	push	r22
+ 1d6:	7f 93       	push	r23
+ 1d8:	8f 93       	push	r24
+ 1da:	9f 93       	push	r25
+ 1dc:	af 93       	push	r26
+ 1de:	bf 93       	push	r27
+ 1e0:	ef 93       	push	r30
+ 1e2:	ff 93       	push	r31
+	Sec++;
+ 1e4:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
+ 1e8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1ea:	80 93 78 00 	sts	0x0078, r24	; 0x800078 <Sec>
+	
+	if(Sec<=9){SetPos(8,0);SendStr(itoa(Sec,TimeBuffer,10));}
+ 1ee:	8a 30       	cpi	r24, 0x0A	; 10
+ 1f0:	78 f4       	brcc	.+30     	; 0x210 <__vector_4+0x4e>
+}
+//--------------------------------
+void SetPos(unsigned char x,unsigned char y){
+	char adress;
+	adress=(0x40*y+x)|0b10000000;
+	SendByte(adress, 0);
+ 1f2:	60 e0       	ldi	r22, 0x00	; 0
+ 1f4:	88 e8       	ldi	r24, 0x88	; 136
+ 1f6:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+    } else if (__radix < 2 || __radix > 36) {
+	*__s = 0;
+	return __s;
+    } else {
+	extern char *__itoa_ncheck (int, char *, unsigned char);
+	return __itoa_ncheck (__val, __s, __radix);
+ 1fa:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
+ 1fe:	4a e0       	ldi	r20, 0x0A	; 10
+ 200:	69 e7       	ldi	r22, 0x79	; 121
+ 202:	70 e0       	ldi	r23, 0x00	; 0
+ 204:	90 e0       	ldi	r25, 0x00	; 0
+ 206:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 20a:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 20e:	0e c0       	rjmp	.+28     	; 0x22c <__vector_4+0x6a>
+ 210:	60 e0       	ldi	r22, 0x00	; 0
+ 212:	87 e8       	ldi	r24, 0x87	; 135
+ 214:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 218:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
+ 21c:	4a e0       	ldi	r20, 0x0A	; 10
+ 21e:	69 e7       	ldi	r22, 0x79	; 121
+ 220:	70 e0       	ldi	r23, 0x00	; 0
+ 222:	90 e0       	ldi	r25, 0x00	; 0
+ 224:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+	else {SetPos(7,0);SendStr(itoa(Sec,TimeBuffer,10));}
+ 228:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	if(Sec==60){
+ 22c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
+ 230:	8c 33       	cpi	r24, 0x3C	; 60
+ 232:	a1 f5       	brne	.+104    	; 0x29c <__vector_4+0xda>
+		Sec=0; SetPos(7,0);SendStr(itoa(Sec,TimeBuffer,10));
+ 234:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
+ 238:	60 e0       	ldi	r22, 0x00	; 0
+ 23a:	87 e8       	ldi	r24, 0x87	; 135
+ 23c:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 240:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
+ 244:	4a e0       	ldi	r20, 0x0A	; 10
+ 246:	69 e7       	ldi	r22, 0x79	; 121
+ 248:	70 e0       	ldi	r23, 0x00	; 0
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 250:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+		Min++;
+ 254:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 258:	8f 5f       	subi	r24, 0xFF	; 255
+ 25a:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <Min>
+		if(Min<=9){SetPos(5,0);	SendStr(itoa(Min,TimeBuffer,10));}
+ 25e:	8a 30       	cpi	r24, 0x0A	; 10
+ 260:	78 f4       	brcc	.+30     	; 0x280 <__vector_4+0xbe>
+ 262:	60 e0       	ldi	r22, 0x00	; 0
+ 264:	85 e8       	ldi	r24, 0x85	; 133
+ 266:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 26a:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 26e:	4a e0       	ldi	r20, 0x0A	; 10
+ 270:	69 e7       	ldi	r22, 0x79	; 121
+ 272:	70 e0       	ldi	r23, 0x00	; 0
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 27a:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 27e:	0e c0       	rjmp	.+28     	; 0x29c <__vector_4+0xda>
+ 280:	60 e0       	ldi	r22, 0x00	; 0
+ 282:	84 e8       	ldi	r24, 0x84	; 132
+ 284:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 288:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 28c:	4a e0       	ldi	r20, 0x0A	; 10
+ 28e:	69 e7       	ldi	r22, 0x79	; 121
+ 290:	70 e0       	ldi	r23, 0x00	; 0
+ 292:	90 e0       	ldi	r25, 0x00	; 0
+ 294:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+		else{SetPos(4,0);	SendStr(itoa(Min,TimeBuffer,10));}
+ 298:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	}
+	if(Min==60){
+ 29c:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 2a0:	8c 33       	cpi	r24, 0x3C	; 60
+ 2a2:	a1 f5       	brne	.+104    	; 0x30c <__vector_4+0x14a>
+		Min=0; SetPos(4,0);SendStr(itoa(Min,TimeBuffer,10));
+ 2a4:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <Min>
+ 2a8:	60 e0       	ldi	r22, 0x00	; 0
+ 2aa:	84 e8       	ldi	r24, 0x84	; 132
+ 2ac:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 2b0:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 2b4:	4a e0       	ldi	r20, 0x0A	; 10
+ 2b6:	69 e7       	ldi	r22, 0x79	; 121
+ 2b8:	70 e0       	ldi	r23, 0x00	; 0
+ 2ba:	90 e0       	ldi	r25, 0x00	; 0
+ 2bc:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 2c0:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+		Hour++;
+ 2c4:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 2c8:	8f 5f       	subi	r24, 0xFF	; 255
+ 2ca:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+		if(Hour<=9){SetPos(2,0);SendStr(itoa(Hour,TimeBuffer,10));}
+ 2ce:	8a 30       	cpi	r24, 0x0A	; 10
+ 2d0:	78 f4       	brcc	.+30     	; 0x2f0 <__vector_4+0x12e>
+ 2d2:	60 e0       	ldi	r22, 0x00	; 0
+ 2d4:	82 e8       	ldi	r24, 0x82	; 130
+ 2d6:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 2da:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 2de:	4a e0       	ldi	r20, 0x0A	; 10
+ 2e0:	69 e7       	ldi	r22, 0x79	; 121
+ 2e2:	70 e0       	ldi	r23, 0x00	; 0
+ 2e4:	90 e0       	ldi	r25, 0x00	; 0
+ 2e6:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 2ea:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 2ee:	0e c0       	rjmp	.+28     	; 0x30c <__vector_4+0x14a>
+ 2f0:	60 e0       	ldi	r22, 0x00	; 0
+ 2f2:	81 e8       	ldi	r24, 0x81	; 129
+ 2f4:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 2f8:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 2fc:	4a e0       	ldi	r20, 0x0A	; 10
+ 2fe:	69 e7       	ldi	r22, 0x79	; 121
+ 300:	70 e0       	ldi	r23, 0x00	; 0
+ 302:	90 e0       	ldi	r25, 0x00	; 0
+ 304:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+		else{SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
+ 308:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	}
+	if(Hour==24){Sec=0;Min=0;Hour=0;SetPos(1,0);SendStr("00:00:00");}
+ 30c:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 310:	88 31       	cpi	r24, 0x18	; 24
+ 312:	71 f4       	brne	.+28     	; 0x330 <__vector_4+0x16e>
+ 314:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
+ 318:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <Min>
+ 31c:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <__data_end>
+ 320:	60 e0       	ldi	r22, 0x00	; 0
+ 322:	81 e8       	ldi	r24, 0x81	; 129
+ 324:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 328:	89 e6       	ldi	r24, 0x69	; 105
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	if(CheckDots){SetPos(3,0);SendStr(" ");SetPos(6,0);SendStr(" ");CheckDots=false;}
+ 330:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <CheckDots>
+ 334:	88 23       	and	r24, r24
+ 336:	99 f0       	breq	.+38     	; 0x35e <__vector_4+0x19c>
+ 338:	60 e0       	ldi	r22, 0x00	; 0
+ 33a:	83 e8       	ldi	r24, 0x83	; 131
+ 33c:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 340:	82 e7       	ldi	r24, 0x72	; 114
+ 342:	90 e0       	ldi	r25, 0x00	; 0
+ 344:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 348:	60 e0       	ldi	r22, 0x00	; 0
+ 34a:	86 e8       	ldi	r24, 0x86	; 134
+ 34c:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 350:	82 e7       	ldi	r24, 0x72	; 114
+ 352:	90 e0       	ldi	r25, 0x00	; 0
+ 354:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 358:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <CheckDots>
+ 35c:	13 c0       	rjmp	.+38     	; 0x384 <__vector_4+0x1c2>
+ 35e:	60 e0       	ldi	r22, 0x00	; 0
+ 360:	83 e8       	ldi	r24, 0x83	; 131
+ 362:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+	else {SetPos(3,0);SendStr(":");SetPos(6,0);SendStr(":");CheckDots=true;}
+ 366:	84 e7       	ldi	r24, 0x74	; 116
+ 368:	90 e0       	ldi	r25, 0x00	; 0
+ 36a:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 36e:	60 e0       	ldi	r22, 0x00	; 0
+ 370:	86 e8       	ldi	r24, 0x86	; 134
+ 372:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 376:	84 e7       	ldi	r24, 0x74	; 116
+ 378:	90 e0       	ldi	r25, 0x00	; 0
+ 37a:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 37e:	81 e0       	ldi	r24, 0x01	; 1
+ 380:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <CheckDots>
+}
+ 384:	ff 91       	pop	r31
+ 386:	ef 91       	pop	r30
+ 388:	bf 91       	pop	r27
+ 38a:	af 91       	pop	r26
+ 38c:	9f 91       	pop	r25
+ 38e:	8f 91       	pop	r24
+ 390:	7f 91       	pop	r23
+ 392:	6f 91       	pop	r22
+ 394:	5f 91       	pop	r21
+ 396:	4f 91       	pop	r20
+ 398:	3f 91       	pop	r19
+ 39a:	2f 91       	pop	r18
+ 39c:	0f 90       	pop	r0
+ 39e:	0f be       	out	0x3f, r0	; 63
+ 3a0:	0f 90       	pop	r0
+ 3a2:	1f 90       	pop	r1
+ 3a4:	18 95       	reti
+
+000003a6 <PORTS_INI>:
+//----------------------------
+void PORTS_INI(){
+		DDRD  = 0xFF;
+ 3a6:	8f ef       	ldi	r24, 0xFF	; 255
+ 3a8:	81 bb       	out	0x11, r24	; 17
+		PORTD = 0x00;
+ 3aa:	12 ba       	out	0x12, r1	; 18
+		DDRA  = 0x00;
+ 3ac:	1a ba       	out	0x1a, r1	; 26
+		PORTA|=(1<<PORTA1)|(1<<PORTA2);			
+ 3ae:	8b b3       	in	r24, 0x1b	; 27
+ 3b0:	86 60       	ori	r24, 0x06	; 6
+ 3b2:	8b bb       	out	0x1b, r24	; 27
+ 3b4:	08 95       	ret
+
+000003b6 <main>:
+void TIMER_INI();
+void PORTS_INI();
+
+int main(void)
+{
+	DDRC = 0xFF;
+ 3b6:	8f ef       	ldi	r24, 0xFF	; 255
+ 3b8:	84 bb       	out	0x14, r24	; 20
+	
+	PORTS_INI();
+ 3ba:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <PORTS_INI>
+	LCD_INI();
+ 3be:	0e 94 6d 00 	call	0xda	; 0xda <LCD_INI>
+	TIMER_INI();
+ 3c2:	0e 94 d6 00 	call	0x1ac	; 0x1ac <TIMER_INI>
+ 3c6:	60 e0       	ldi	r22, 0x00	; 0
+ 3c8:	81 e8       	ldi	r24, 0x81	; 129
+ 3ca:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+	SetPos(1, 0);
+	SendStr("00:00:00");
+ 3ce:	89 e6       	ldi	r24, 0x69	; 105
+ 3d0:	90 e0       	ldi	r25, 0x00	; 0
+ 3d2:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	SetCgramAddress(0x0F);
+ 3d6:	8f e0       	ldi	r24, 0x0F	; 15
+ 3d8:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <SetCgramAddress>
+ 3dc:	c1 e6       	ldi	r28, 0x61	; 97
+ 3de:	d0 e0       	ldi	r29, 0x00	; 0
+ 3e0:	09 e6       	ldi	r16, 0x69	; 105
+ 3e2:	10 e0       	ldi	r17, 0x00	; 0
+	for(uint8_t i=0;i<8;i++){
+		SendByte(ClockSym[i],1);
+ 3e4:	61 e0       	ldi	r22, 0x01	; 1
+ 3e6:	89 91       	ld	r24, Y+
+ 3e8:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+	LCD_INI();
+	TIMER_INI();
+	SetPos(1, 0);
+	SendStr("00:00:00");
+	SetCgramAddress(0x0F);
+	for(uint8_t i=0;i<8;i++){
+ 3ec:	c0 17       	cp	r28, r16
+ 3ee:	d1 07       	cpc	r29, r17
+ 3f0:	c9 f7       	brne	.-14     	; 0x3e4 <main+0x2e>
+		SendByte(ClockSym[i],1);
+	}
+	
+	SetDdramAddress(0x08);
+ 3f2:	88 e0       	ldi	r24, 0x08	; 8
+ 3f4:	0e 94 cc 00 	call	0x198	; 0x198 <SetDdramAddress>
+ 3f8:	60 e0       	ldi	r22, 0x00	; 0
+ 3fa:	80 e8       	ldi	r24, 0x80	; 128
+ 3fc:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+	SetPos(0,0);
+	SendByte(0x02,1);
+ 400:	61 e0       	ldi	r22, 0x01	; 1
+ 402:	82 e0       	ldi	r24, 0x02	; 2
+ 404:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+	SetDdramAddress(0x00);
+	SetPos(9,0);
+	SendByte(0x01,1);		
+	*///---------------alarm clock character output block----------
+		
+	while (ASSR&((1<<TCN2UB)|(1<<OCR2UB)|(1<<TCR2UB))); //We wait for readiness of Timer2
+ 408:	82 b5       	in	r24, 0x22	; 34
+ 40a:	87 70       	andi	r24, 0x07	; 7
+ 40c:	e9 f7       	brne	.-6      	; 0x408 <__LOCK_REGION_LENGTH__+0x8>
+	TIMSK |=(1<<TOIE2);// Include interruption on overflow
+ 40e:	89 b7       	in	r24, 0x39	; 57
+ 410:	80 64       	ori	r24, 0x40	; 64
+ 412:	89 bf       	out	0x39, r24	; 57
+	sei(); //Allow interruptions
+ 414:	78 94       	sei
+	
+    /* Replace with your application code */
+ while (1)
+ {
+	 if(!(PINA&(1<<PORTA1))){
+ 416:	c9 99       	sbic	0x19, 1	; 25
+ 418:	2f c0       	rjmp	.+94     	; 0x478 <__stack+0x19>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 41a:	2f ef       	ldi	r18, 0xFF	; 255
+ 41c:	83 ec       	ldi	r24, 0xC3	; 195
+ 41e:	99 e0       	ldi	r25, 0x09	; 9
+ 420:	21 50       	subi	r18, 0x01	; 1
+ 422:	80 40       	sbci	r24, 0x00	; 0
+ 424:	90 40       	sbci	r25, 0x00	; 0
+ 426:	e1 f7       	brne	.-8      	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
+ 428:	00 c0       	rjmp	.+0      	; 0x42a <__LOCK_REGION_LENGTH__+0x2a>
+ 42a:	00 00       	nop
+		 _delay_ms(400); //Remove noise of the button
+		 Hour++;
+ 42c:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 430:	8f 5f       	subi	r24, 0xFF	; 255
+ 432:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
+		 Sec=0;
+ 436:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
+		 if(Hour<=9){SetPos(2,0);SendStr(itoa(Hour,TimeBuffer,10));}
+ 43a:	8a 30       	cpi	r24, 0x0A	; 10
+ 43c:	78 f4       	brcc	.+30     	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
+ 43e:	60 e0       	ldi	r22, 0x00	; 0
+ 440:	82 e8       	ldi	r24, 0x82	; 130
+ 442:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 446:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 44a:	4a e0       	ldi	r20, 0x0A	; 10
+ 44c:	69 e7       	ldi	r22, 0x79	; 121
+ 44e:	70 e0       	ldi	r23, 0x00	; 0
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 456:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 45a:	0e c0       	rjmp	.+28     	; 0x478 <__stack+0x19>
+ 45c:	60 e0       	ldi	r22, 0x00	; 0
+ 45e:	81 e8       	ldi	r24, 0x81	; 129
+ 460:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 464:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
+ 468:	4a e0       	ldi	r20, 0x0A	; 10
+ 46a:	69 e7       	ldi	r22, 0x79	; 121
+ 46c:	70 e0       	ldi	r23, 0x00	; 0
+ 46e:	90 e0       	ldi	r25, 0x00	; 0
+ 470:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+		 else{SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
+ 474:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+	 }
+	 if(!(PINA&(1<<PORTA2))){
+ 478:	ca 99       	sbic	0x19, 2	; 25
+ 47a:	cd cf       	rjmp	.-102    	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+ 47c:	2f ef       	ldi	r18, 0xFF	; 255
+ 47e:	83 ec       	ldi	r24, 0xC3	; 195
+ 480:	99 e0       	ldi	r25, 0x09	; 9
+ 482:	21 50       	subi	r18, 0x01	; 1
+ 484:	80 40       	sbci	r24, 0x00	; 0
+ 486:	90 40       	sbci	r25, 0x00	; 0
+ 488:	e1 f7       	brne	.-8      	; 0x482 <__stack+0x23>
+ 48a:	00 c0       	rjmp	.+0      	; 0x48c <__stack+0x2d>
+ 48c:	00 00       	nop
+		 _delay_ms(400); //Remove noise of the button-----------------+
+		 Min++;
+ 48e:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 492:	8f 5f       	subi	r24, 0xFF	; 255
+ 494:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <Min>
+		 Sec=0;
+ 498:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
+		 if(Min<=9){SetPos(5,0);	SendStr(itoa(Min,TimeBuffer,10));}
+ 49c:	8a 30       	cpi	r24, 0x0A	; 10
+ 49e:	78 f4       	brcc	.+30     	; 0x4be <__stack+0x5f>
+ 4a0:	60 e0       	ldi	r22, 0x00	; 0
+ 4a2:	85 e8       	ldi	r24, 0x85	; 133
+ 4a4:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 4a8:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 4ac:	4a e0       	ldi	r20, 0x0A	; 10
+ 4ae:	69 e7       	ldi	r22, 0x79	; 121
+ 4b0:	70 e0       	ldi	r23, 0x00	; 0
+ 4b2:	90 e0       	ldi	r25, 0x00	; 0
+ 4b4:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+ 4b8:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 4bc:	ac cf       	rjmp	.-168    	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+ 4be:	60 e0       	ldi	r22, 0x00	; 0
+ 4c0:	84 e8       	ldi	r24, 0x84	; 132
+ 4c2:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
+ 4c6:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
+ 4ca:	4a e0       	ldi	r20, 0x0A	; 10
+ 4cc:	69 e7       	ldi	r22, 0x79	; 121
+ 4ce:	70 e0       	ldi	r23, 0x00	; 0
+ 4d0:	90 e0       	ldi	r25, 0x00	; 0
+ 4d2:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
+		 else{SetPos(4,0);	SendStr(itoa(Min,TimeBuffer,10));}
+ 4d6:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
+ 4da:	9d cf       	rjmp	.-198    	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+
+000004dc <__itoa_ncheck>:
+ 4dc:	bb 27       	eor	r27, r27
+ 4de:	4a 30       	cpi	r20, 0x0A	; 10
+ 4e0:	31 f4       	brne	.+12     	; 0x4ee <__itoa_ncheck+0x12>
+ 4e2:	99 23       	and	r25, r25
+ 4e4:	22 f4       	brpl	.+8      	; 0x4ee <__itoa_ncheck+0x12>
+ 4e6:	bd e2       	ldi	r27, 0x2D	; 45
+ 4e8:	90 95       	com	r25
+ 4ea:	81 95       	neg	r24
+ 4ec:	9f 4f       	sbci	r25, 0xFF	; 255
+ 4ee:	0c 94 7a 02 	jmp	0x4f4	; 0x4f4 <__utoa_common>
+
+000004f2 <__utoa_ncheck>:
+ 4f2:	bb 27       	eor	r27, r27
+
+000004f4 <__utoa_common>:
+ 4f4:	fb 01       	movw	r30, r22
+ 4f6:	55 27       	eor	r21, r21
+ 4f8:	aa 27       	eor	r26, r26
+ 4fa:	88 0f       	add	r24, r24
+ 4fc:	99 1f       	adc	r25, r25
+ 4fe:	aa 1f       	adc	r26, r26
+ 500:	a4 17       	cp	r26, r20
+ 502:	10 f0       	brcs	.+4      	; 0x508 <__utoa_common+0x14>
+ 504:	a4 1b       	sub	r26, r20
+ 506:	83 95       	inc	r24
+ 508:	50 51       	subi	r21, 0x10	; 16
+ 50a:	b9 f7       	brne	.-18     	; 0x4fa <__utoa_common+0x6>
+ 50c:	a0 5d       	subi	r26, 0xD0	; 208
+ 50e:	aa 33       	cpi	r26, 0x3A	; 58
+ 510:	08 f0       	brcs	.+2      	; 0x514 <__utoa_common+0x20>
+ 512:	a9 5d       	subi	r26, 0xD9	; 217
+ 514:	a1 93       	st	Z+, r26
+ 516:	00 97       	sbiw	r24, 0x00	; 0
+ 518:	79 f7       	brne	.-34     	; 0x4f8 <__utoa_common+0x4>
+ 51a:	b1 11       	cpse	r27, r1
+ 51c:	b1 93       	st	Z+, r27
+ 51e:	11 92       	st	Z+, r1
+ 520:	cb 01       	movw	r24, r22
+ 522:	0c 94 93 02 	jmp	0x526	; 0x526 <strrev>
+
+00000526 <strrev>:
+ 526:	dc 01       	movw	r26, r24
+ 528:	fc 01       	movw	r30, r24
+ 52a:	67 2f       	mov	r22, r23
+ 52c:	71 91       	ld	r23, Z+
+ 52e:	77 23       	and	r23, r23
+ 530:	e1 f7       	brne	.-8      	; 0x52a <strrev+0x4>
+ 532:	32 97       	sbiw	r30, 0x02	; 2
+ 534:	04 c0       	rjmp	.+8      	; 0x53e <strrev+0x18>
+ 536:	7c 91       	ld	r23, X
+ 538:	6d 93       	st	X+, r22
+ 53a:	70 83       	st	Z, r23
+ 53c:	62 91       	ld	r22, -Z
+ 53e:	ae 17       	cp	r26, r30
+ 540:	bf 07       	cpc	r27, r31
+ 542:	c8 f3       	brcs	.-14     	; 0x536 <strrev+0x10>
+ 544:	08 95       	ret
+
+00000546 <_exit>:
+ 546:	f8 94       	cli
+
+00000548 <__stop_program>:
+ 548:	ff cf       	rjmp	.-2      	; 0x548 <__stop_program>
