@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000130  00000000  00000000  00002e1c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000421  00000000  00000000  00002f4c  2**0
+ 10 .debug_str    00000432  00000000  00000000  00002f4c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000d9a  00000000  00000000  0000336d  2**0
+ 11 .debug_loc    00000d9a  00000000  00000000  0000337e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000068  00000000  00000000  00004107  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00004118  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -347,7 +347,7 @@ void SetPos(unsigned char x,unsigned char y){
  220:	70 e0       	ldi	r23, 0x00	; 0
  222:	90 e0       	ldi	r25, 0x00	; 0
  224:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
-	else {SetPos(7,0);SendStr(itoa(Sec,TimeBuffer,10));}
+	 else	  {SetPos(7,0);SendStr(itoa(Sec,TimeBuffer,10));}
  228:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
 	if(Sec==60){
  22c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <Sec>
@@ -369,7 +369,7 @@ void SetPos(unsigned char x,unsigned char y){
  254:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <Min>
  258:	8f 5f       	subi	r24, 0xFF	; 255
  25a:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <Min>
-		if(Min<=9){SetPos(5,0);	SendStr(itoa(Min,TimeBuffer,10));}
+		if(Min<=9){SetPos(5,0);SendStr(itoa(Min,TimeBuffer,10));}
  25e:	8a 30       	cpi	r24, 0x0A	; 10
  260:	78 f4       	brcc	.+30     	; 0x280 <__vector_4+0xbe>
  262:	60 e0       	ldi	r22, 0x00	; 0
@@ -392,7 +392,7 @@ void SetPos(unsigned char x,unsigned char y){
  290:	70 e0       	ldi	r23, 0x00	; 0
  292:	90 e0       	ldi	r25, 0x00	; 0
  294:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
-		else{SetPos(4,0);	SendStr(itoa(Min,TimeBuffer,10));}
+		 else     {SetPos(4,0);SendStr(itoa(Min,TimeBuffer,10));}
  298:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
 	}
 	if(Min==60){
@@ -438,10 +438,10 @@ void SetPos(unsigned char x,unsigned char y){
  300:	70 e0       	ldi	r23, 0x00	; 0
  302:	90 e0       	ldi	r25, 0x00	; 0
  304:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
-		else{SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
+		 else      {SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
  308:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
 	}
-	if(Hour==24){Sec=0;Min=0;Hour=0;SetPos(1,0);SendStr("00:00:00");}
+	if(Hour==24) {Sec=0;Min=0;Hour=0;SetPos(1,0);SendStr("00:00:00");}
  30c:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <__data_end>
  310:	88 31       	cpi	r24, 0x18	; 24
  312:	71 f4       	brne	.+28     	; 0x330 <__vector_4+0x16e>
@@ -475,7 +475,7 @@ void SetPos(unsigned char x,unsigned char y){
  35e:	60 e0       	ldi	r22, 0x00	; 0
  360:	83 e8       	ldi	r24, 0x83	; 131
  362:	0e 94 5c 00 	call	0xb8	; 0xb8 <SendByte>
-	else {SetPos(3,0);SendStr(":");SetPos(6,0);SendStr(":");CheckDots=true;}
+	 else        {SetPos(3,0);SendStr(":");SetPos(6,0);SendStr(":");CheckDots=true;}
  366:	84 e7       	ldi	r24, 0x74	; 116
  368:	90 e0       	ldi	r25, 0x00	; 0
  36a:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
@@ -568,8 +568,7 @@ int main(void)
  3ee:	d1 07       	cpc	r29, r17
  3f0:	c9 f7       	brne	.-14     	; 0x3e4 <main+0x2e>
 		SendByte(ClockSym[i],1);
-	}
-	
+	}	
 	SetDdramAddress(0x08);
  3f2:	88 e0       	ldi	r24, 0x08	; 8
  3f4:	0e 94 cc 00 	call	0x198	; 0x198 <SetDdramAddress>
@@ -584,7 +583,7 @@ int main(void)
 	SetDdramAddress(0x00);
 	SetPos(9,0);
 	SendByte(0x01,1);		
-	*///---------------alarm clock character output block----------
+	*///-------------alarm clock character output block----------
 		
 	while (ASSR&((1<<TCN2UB)|(1<<OCR2UB)|(1<<TCR2UB))); //We wait for readiness of Timer2
  408:	82 b5       	in	r24, 0x22	; 34
@@ -625,7 +624,7 @@ int main(void)
  432:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <__data_end>
 		 Sec=0;
  436:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
-		 if(Hour<=9){SetPos(2,0);SendStr(itoa(Hour,TimeBuffer,10));}
+		 if(Hour<=9) {SetPos(2,0);SendStr(itoa(Hour,TimeBuffer,10));}
  43a:	8a 30       	cpi	r24, 0x0A	; 10
  43c:	78 f4       	brcc	.+30     	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
  43e:	60 e0       	ldi	r22, 0x00	; 0
@@ -648,7 +647,7 @@ int main(void)
  46c:	70 e0       	ldi	r23, 0x00	; 0
  46e:	90 e0       	ldi	r25, 0x00	; 0
  470:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
-		 else{SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
+		  else       {SetPos(1,0);SendStr(itoa(Hour,TimeBuffer,10));}
  474:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
 	 }
 	 if(!(PINA&(1<<PORTA2))){
@@ -670,7 +669,7 @@ int main(void)
  494:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <Min>
 		 Sec=0;
  498:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <Sec>
-		 if(Min<=9){SetPos(5,0);	SendStr(itoa(Min,TimeBuffer,10));}
+		 if(Min<=9)  {SetPos(5,0);SendStr(itoa(Min,TimeBuffer,10));}
  49c:	8a 30       	cpi	r24, 0x0A	; 10
  49e:	78 f4       	brcc	.+30     	; 0x4be <__stack+0x5f>
  4a0:	60 e0       	ldi	r22, 0x00	; 0
@@ -693,7 +692,7 @@ int main(void)
  4ce:	70 e0       	ldi	r23, 0x00	; 0
  4d0:	90 e0       	ldi	r25, 0x00	; 0
  4d2:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__itoa_ncheck>
-		 else{SetPos(4,0);	SendStr(itoa(Min,TimeBuffer,10));}
+		  else       {SetPos(4,0);SendStr(itoa(Min,TimeBuffer,10));}
  4d6:	0e 94 bd 00 	call	0x17a	; 0x17a <SendStr>
  4da:	9d cf       	rjmp	.-198    	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
 
